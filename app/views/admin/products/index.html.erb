@@ -1,0 +1,52 @@
+<div>
+  <div class="container p-4">
+    <div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="">
+            <%= link_to "Add new product", new_admin_product_path, class: "" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div>
+            <div class="d-flex">
+              <h2><%= @total_products %></h2>
+              <h2>Products Listed</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div>
+            <h2>Tickets</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="admin-product-table">
+          <% @products.each do |product| %>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><img src="<%= product.photos.first.url %>"></td>
+              <td><%= product.title %></td>
+              <td><%= product.price %></td>
+              <td><%= product.description %></td>
+              <td><%= link_to "Details", admin_product_path(product.id), class: "" %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
