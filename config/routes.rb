@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :products
   end
-  # Defines the root path route ("/")
+  
+  resources :payments, only: [:new, :create]
+
 end
