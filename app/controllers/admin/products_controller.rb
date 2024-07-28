@@ -29,14 +29,14 @@ class Admin::ProductsController < ApplicationController
     if params[:product][:photos].first != ""
       @product.photos.purge
       if @product.update(product_params)
-        redirect_to admin_product_path(@product.id), notice: 'Produto atualizado com sucesso.'
+        redirect_to admin_product_path(@product.id), notice: 'Product successfully updated.'
       else
         render :edit
       end
     else
       if @product.update(product_params.except(:photos))
 
-        redirect_to admin_product_path(@product.id), notice: 'Produto atualizado com sucesso.'
+        redirect_to admin_product_path(@product.id), notice: 'Product successfully updated.'
       else
         render :edit
       end
