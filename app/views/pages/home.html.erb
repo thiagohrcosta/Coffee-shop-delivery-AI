@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="home-products-container">
+    <% @products.each do |product| %>
+      <div class="home-product-card">
+        <img src="<%= product.photos.first.url %>" >
+        <p class="fw-bold"><%= product.title.upcase %></p>
+        <p class="fw-light"><%= product.description %></p>
+        <div class="d-flex justify-content-between">
+          <p><%= product.price %></p>
+          <%= link_to "ADD TO CART", "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

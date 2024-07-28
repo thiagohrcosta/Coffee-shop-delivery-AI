@@ -7,3 +7,17 @@ html, body {
     width: 150px;
   }
 }
+
+.bg-light-white {
+  background: #FEFAE0;
+}
+
+.home-products-container {
+  border-radius: 20px;
+  padding: 40px;
+  background: #FEFAE0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  margin: 10px;
+}
