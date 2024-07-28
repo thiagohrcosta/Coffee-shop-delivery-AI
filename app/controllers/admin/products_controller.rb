@@ -5,6 +5,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @total_products = @products.count
   end
 
   def show;end
@@ -25,10 +26,20 @@ class Admin::ProductsController < ApplicationController
   def edit;end
 
   def update
-    if @product.update(product_params)
-      redirect_to admin_product_path(@product.id)
+    if params[:product][:photos].first != ""
+      @product.photos.purge
+      if @product.update(product_params)
+        redirect_to admin_product_path(@product.id), notice: 'Produto atualizado com sucesso.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      if @product.update(product_params.except(:photos))
+
+        redirect_to admin_product_path(@product.id), notice: 'Produto atualizado com sucesso.'
+      else
+        render :edit
+      end
     end
   end
 
@@ -45,6 +56,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :price, :description, :photos)
+    params.require(:product).permit(:title, :price, :description, photos: [])
   end
 end

@@ -1,0 +1,20 @@
+<div class="admin-show-product pt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="<%= @product.photos.first.url %>" class="w-100">
+      </div>
+      <div class="col-md-6">
+        <div>
+          <h2><%= @product.title %></h2>
+          <h2>U$ <%= @product.price %></h2>
+          <p><%= @product.description %></p>
+        </div>
+        <div>
+          <%= link_to "Edit product", edit_admin_product_path(@product.id), class: "" %>
+          <%= link_to "Delete product", "#", class: "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
