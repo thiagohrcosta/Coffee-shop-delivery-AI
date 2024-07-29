@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   end
   
   resources :payments, only: [:new, :create]
+  resources :carts, only: [:show, :create, :update]
 
 end

@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-between">
+  <div>
+  </div>
+  <div>
+    <% if @cart.present? %>
+      <%= @cart.products.count %>
+    <% end %>
+  </div>
+</div>
