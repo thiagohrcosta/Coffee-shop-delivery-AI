@@ -38,6 +38,8 @@ gem 'simple_form'
 
 gem 'stripe'
 
+gem 'pry', '~> 0.14.2'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

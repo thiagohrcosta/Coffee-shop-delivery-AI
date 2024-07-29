@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-between">
+  <div>
+  </div>
+  <div>
+    <% if current_user.present? && current_user.access == "admin" %>
+    <% else %>
+      <% if @cart.present? %>
+        <%= link_to cart_path(@cart.id) do %>
+          <div>
+            <%= image_tag "cart.png" %>
+            <%= @cart.products.count %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
