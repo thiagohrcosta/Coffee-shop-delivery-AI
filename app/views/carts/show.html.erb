@@ -27,7 +27,11 @@
       <h2>Total: <%= number_to_currency(total_sum) %></h2>
     </div>
     <div class="d-flex justify-content-end">
-      <%= link_to "GO TO PAYMENT", "#", class: "" %>
+      <% if @cart.is_active == true %>
+        <%= link_to "FINISH ORDER", orders_path(cart_id: @cart.id), data: { turbo_method: :post }, class: "" %>
+      <% else %>
+        <%= link_to "GO TO PAYMENT", payment_path(Order.find_by(cart_id: @cart.id).payment.id), class: "" %>
+      <% end %>
     </div>
   </div>
 </div>

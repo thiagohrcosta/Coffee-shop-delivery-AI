@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_135042) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_29_234519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_135042) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.float "total_price", null: false
+    t.string "status", default: "pending", null: false
+    t.datetime "paid_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.float "amount", null: false
+    t.string "status", null: false
+    t.string "transaction_id"
+    t.datetime "paid_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.float "price"
@@ -86,4 +107,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_135042) do
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "payments", "orders"
 end
