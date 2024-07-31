@@ -1,10 +1,14 @@
 class PaymentsController < ApplicationController
+  def show
+    @payment = Payment.find(params[:id])
+  end
+
   def new
   end
 
   def create
     token = params[:stripeToken]
-    amount = params[:amount].to_i
+    amount = params[:amount].gsub(".", "").to_i
 
     charge = Stripe::Charge.create({
       amount: amount,
