@@ -20,7 +20,7 @@
             <td><%= cart_product.product.price %></td>
             <td><%= cart_product.amount %></td>
             <td><%= cart_product.amount.to_f * cart_product.product.price %></td>
-            <td><%= link_to "Remove", "#", class: "btn btn-danger w-100"%>
+            <td><%= link_to "Remove", cart_product_path(cart_product.id), data: { turbo_method: :delete }, class: "btn btn-danger w-100"%>
           </tr>
         <% end %>
       </tbody>

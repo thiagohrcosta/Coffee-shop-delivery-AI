@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  def index
+  end
+
   def create
     @cart = Cart.find(params[:cart_id])
     total_price = calculate_total_price(@cart)
