@@ -12,6 +12,7 @@ class CartsController < ApplicationController
     if user_has_active_cart?
       @cart = Cart.find_by(user_id: current_user.id)
       @cart_product = CartProduct.create!(cart_id: @cart.id, product_id: @product.id)
+      update_order_total_price(@cart.id)
       redirect_to cart_path(@cart.id)
     else
       ActiveRecord::Base.transaction do
@@ -39,6 +40,12 @@ class CartsController < ApplicationController
   def destroy;end
 
   private
+
+  def update_order_total_price(cart_id)
+    @cart = Cart.find(cart_id)
+    @order = Order.find_by(cart_id: cart_id)
+    @order.update(total_price: @cart.products.sum(:price))
+  end
 
   def user_has_active_cart?
     @cart = Cart.find_by(user_id: current_user.id)

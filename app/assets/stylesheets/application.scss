@@ -21,3 +21,42 @@ html, body {
   grid-gap: 16px;
   margin: 10px;
 }
+
+.btn-default {
+  text-decoration: none;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-blue-400 {
+  border-radius: 8px;
+  padding: 10px;
+
+  background-color: #4056F4;
+  color: #FEFAE0;
+}
+
+.btn-blue-400:hover {
+  background-color: #4056F4;
+  color: #FEFAE0;
+  opacity: 0.9;
+}
+
+.btn-red-500 {
+  background-color: #CE2D4F;
+  color: #FEFAE0
+}
+
+.btn-red-500:hover {
+  background-color: #CE2D4F;
+  color: #FEFAE0;
+  opacity: 0.9;
+}
+
+.btn-green-500 {
+  background-color: #20A39E;
+  color: #FEFAE0;
+}

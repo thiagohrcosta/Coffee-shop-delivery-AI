@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :user_cart
+
   def index
+    @user_carts = Cart.where(user_id: current_user.id)
+    @cart_ids = @user_carts.pluck(:id)
+    @orders = Order.where(cart_id: @cart_ids)
   end
 
   def create
