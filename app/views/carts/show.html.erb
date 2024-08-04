@@ -8,6 +8,7 @@
           <th scope="col">Unity Price</th>
           <th scope="col">Amount</th>
           <th scope="col">Total</th>
+          <th scole="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +20,7 @@
             <td><%= cart_product.product.price %></td>
             <td><%= cart_product.amount %></td>
             <td><%= cart_product.amount.to_f * cart_product.product.price %></td>
+            <td><%= link_to "Remove", "#", class: "btn btn-danger w-100"%>
           </tr>
         <% end %>
       </tbody>
