@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   def user_cart
     if current_user.present? && current_user.access == "user"
       @cart = Cart.find_by(user_id: current_user.id)
+
+      @cart.is_active == true ? @cart : @cart = nil
     end 
   end
 end

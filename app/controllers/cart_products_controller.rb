@@ -15,7 +15,9 @@ class CartProductsController < ApplicationController
   def update_order_total_price(cart_id)
     @cart = Cart.find(cart_id)
     @order = Order.find_by(cart_id: cart_id)
-    @order.update(total_price: @cart.products.sum(:price))
+    if @order
+      @order.update(total_price: @cart.products.sum(:price))
+    end
   end
 
   def set_cart_product
