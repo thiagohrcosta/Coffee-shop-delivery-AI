@@ -6,6 +6,7 @@ class Admin::ProductsController < ApplicationController
   def index
     @products = Product.all
     @total_products = @products.count
+    @orders = Order.all
   end
 
   def show;end
