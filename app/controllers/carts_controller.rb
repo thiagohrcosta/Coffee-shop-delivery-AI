@@ -11,17 +11,26 @@ class CartsController < ApplicationController
 
     if user_has_active_cart?
       @cart = Cart.find_by(user_id: current_user.id)
-      @cart_product = CartProduct.create!(cart_id: @cart.id, product_id: @product.id)
+      @cart_product = CartProduct.create(cart_id: @cart.id, product_id: @product.id)
+
+      @order = Order.find_by(cart_id: @cart.id)
+
+      if @order
+        update_order_total_price(@cart.id)
+      end
+
       redirect_to cart_path(@cart.id)
     else
       ActiveRecord::Base.transaction do
         @cart = Cart.new(user_id: current_user.id)
         @cart.user_id = current_user.id
-  
         if @cart.save
+
           @cart_product = CartProduct.create!(cart_id: @cart.id, product_id: @product.id)
           redirect_to cart_path(@cart.id), notice: 'Product added to cart.'
         else
+          binding.pry
+
           raise ActiveRecord::Rollback
         end
       end
@@ -40,10 +49,16 @@ class CartsController < ApplicationController
 
   private
 
+  def update_order_total_price(cart_id)
+    @cart = Cart.find(cart_id)
+    @order = Order.find_by(cart_id: cart_id)
+    @order.update(total_price: @cart.products.sum(:price))
+  end
+
   def user_has_active_cart?
     @cart = Cart.find_by(user_id: current_user.id)
 
-    @cart.present? ? true : false
+    @cart.present? && @cart.is_active == true ? true : false
   end
 
   def set_cart

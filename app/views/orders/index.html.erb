@@ -1,0 +1,45 @@
+<%= render 'shared/navbar' %>
+<div>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Order ID#</th>
+          <th scope="col">Products Amount</th>
+          <th scope="col">Total Value</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <th scope="row"><%= order.id %></th>
+            <td><%= Cart.find(order.cart_id).products.count %></td>
+            <td>
+              <div>
+                <% Cart.find(order.cart_id).products.each do |product| %>
+                  <div class="d-flex justify-content-between">
+                    <p><%= product.title %></p>
+                    <p><%= number_to_currency(product.price) %></p>
+                  </div>
+                <% end %>
+                <hr/>
+                <div class="d-flex justify-content-between">
+                  <p>Total</p>
+                  <p><%= number_to_currency(order.total_price) %></p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <% if order.paid_at.nil? %>
+                <%= link_to "GO TO PAYMENT", "#", class: "btn-default btn-red-500 w-100" %>
+              <% else %>
+                <%= link_to "PAID", "#", class: "btn-default btn-green-500 w-100" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

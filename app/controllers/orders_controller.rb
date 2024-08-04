@@ -1,5 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :user_cart
+
+  def index
+    @user_carts = Cart.where(user_id: current_user.id)
+    @cart_ids = @user_carts.pluck(:id)
+    @orders = Order.where(cart_id: @cart_ids)
+  end
+
   def create
+    binding.pry
     @cart = Cart.find(params[:cart_id])
     total_price = calculate_total_price(@cart)
 

@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
       redirect_to user_session_path
     end
   end
+
+  def user_cart
+    if current_user.present? && current_user.access == "user"
+      @cart = Cart.find_by(user_id: current_user.id)
+
+      @cart.is_active == true ? @cart : @cart = nil
+    end 
+  end
 end
