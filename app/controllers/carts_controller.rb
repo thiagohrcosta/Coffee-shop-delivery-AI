@@ -29,8 +29,6 @@ class CartsController < ApplicationController
           @cart_product = CartProduct.create!(cart_id: @cart.id, product_id: @product.id)
           redirect_to cart_path(@cart.id), notice: 'Product added to cart.'
         else
-          binding.pry
-
           raise ActiveRecord::Rollback
         end
       end

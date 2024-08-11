@@ -16,7 +16,6 @@ class OpenaiJob < ApplicationJob
 
     client = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_ACCESS_TOKEN"))
 
-    binding.pry
     chaptgpt_response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
       messages: [
@@ -35,7 +34,6 @@ class OpenaiJob < ApplicationJob
       ]
     })
 
-    binding.pry
     target_text = "I’m opening a ticket for you right now. You’ll receive updates soon."
     regex_pattern = Regexp.new(Regexp.escape(target_text))
 
