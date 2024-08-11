@@ -34,6 +34,8 @@ gem "cloudinary"
 
 gem "sassc-rails"
 
+gem "ruby-openai"
+
 gem 'simple_form'
 
 gem 'stripe'

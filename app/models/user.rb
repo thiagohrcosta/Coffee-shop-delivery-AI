@@ -8,6 +8,7 @@ class User < ApplicationRecord
   
   enum access: {
     user: 0,
-    admin: 1
+    admin: 1,
+    support_ai: 2
   }
 end

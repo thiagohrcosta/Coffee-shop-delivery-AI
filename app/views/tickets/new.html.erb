@@ -1,0 +1,8 @@
+<div>
+  <%= simple_form_for(@ticket) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :message, as: :text %>
+
+    <%= f.submit %>
+  <% end %>
+</div>

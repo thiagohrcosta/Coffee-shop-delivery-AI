@@ -1,0 +1,2 @@
+class TicketAnswer < ApplicationRecord
+end
