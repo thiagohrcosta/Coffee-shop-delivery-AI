@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :products
+    resources :tickets
   end
   
   resources :payments, only: [:new, :create]
@@ -15,5 +16,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create]
   resources :payments, only: [:show, :create, :update]
   resources :cart_products, only: [:destroy]
-
+  resources :tickets do
+    resources :ticket_answers
+  end
 end

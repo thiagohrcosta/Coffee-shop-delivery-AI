@@ -32,7 +32,7 @@
             </td>
             <td>
               <% if order.paid_at.nil? %>
-                <%= link_to "GO TO PAYMENT", "#", class: "btn-default btn-red-500 w-100" %>
+                <%= link_to "GO TO PAYMENT", payment_path(Order.find(order.id)), class: "btn-default btn-red-500 w-100" %>
               <% else %>
                 <%= link_to "PAID", "#", class: "btn-default btn-green-500 w-100" %>
               <% end %>

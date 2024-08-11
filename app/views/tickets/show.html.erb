@@ -1,0 +1,13 @@
+<div class="container">
+  <% @ticket.ticket_answers.each do |answer| %>
+    <p><%= answer.message %></p>
+  <% end %>
+   <%= simple_form_for([@ticket, @ticket.ticket_answers.build]) do |f| %>
+    <div class="form-group">
+      <%= f.input :message, as: :text, label: 'Your response', required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Submit Response', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
